@@ -67,15 +67,7 @@ public class Vendedor implements Serializable {
     public void setNomeVendedor(String nomeVendedor) {
         this.nomeVendedor = nomeVendedor;
     }
-    /*
-    public Collection<Venda> getVendas() {
-        return vendas;
-    }
 
-    public void setVendas(Collection<Venda> vendas) {
-        this.vendas = vendas;
-    }
-	*/
     @Override
     public int hashCode() {
         int hash = 0;
