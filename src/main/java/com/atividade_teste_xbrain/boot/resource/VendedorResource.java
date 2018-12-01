@@ -2,7 +2,7 @@ package com.atividade_teste_xbrain.boot.resource;
 
 /*
  * A classe VendedorResource é uma classe controladora responsável por 
- * mapear as URLs de acesso aos serviços REST do projeto.
+ * mapear as URLs de acesso aos serviços REST de vendedor do projeto.
  * 
  * @author Victor Hugo Negrisoli
  * @version 1.0
@@ -26,7 +26,7 @@ import com.atividade_teste_xbrain.boot.domain.Vendedor;
 import com.atividade_teste_xbrain.boot.service.VendedorService;
 
 @RestController
-@RequestMapping(value = "/api_vendedor")
+@RequestMapping(value = "/api_vendedores")
 public class VendedorResource {
 
 	@Autowired
