@@ -1,6 +1,7 @@
 package com.atividade_teste_xbrain.boot.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -37,4 +38,11 @@ public class VendedorService {
 		return vendedorRepository.findAll();
 	}
 	
+	public Optional<Vendedor> buscarUm(Integer id) {
+		return vendedorRepository.findById(id);
+	}
+	
+	public Vendedor inserir(Vendedor vendedor) {
+		return vendedorRepository.save(vendedor);
+	}
 }
