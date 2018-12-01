@@ -25,13 +25,14 @@ public class VendedorService {
 	private VendedorRepository vendedorRepository;
 	
 	/*
-	 * O método buscar é responsável por receber um parâmetro idVendedor
-	 * e retornar o objeto Vendedor responsável no banco de dados através da instanciação de
+	 * O método buscar é responsável por retornar todos os o objetos
+	 * do tipo Vendedor que estão no banco de dados através da instanciação de
 	 * vendedorRepository.
 	 * 
 	 * @Return List vendedor Lista de objetos do tipo Vendedor contendo todos os objetos de Vendedor
 	 * que estão no banco de dados
 	 */
+	
 	public List<Vendedor> buscarTodos() {
 		return vendedorRepository.findAll();
 	}
