@@ -1,10 +1,5 @@
 package com.atividade_teste_xbrain.boot.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 /*
  * A classe VendedorService tem como objetivo oferecer um serviço de acesso aos objetos de banco 
  * de dados das interfaces Repository que são especificadas e mapeadas pela JPA.
@@ -14,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  * 
  */
 
+import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.atividade_teste_xbrain.boot.domain.Vendedor;
 import com.atividade_teste_xbrain.boot.repository.VendedorRepository;
 
@@ -63,5 +60,21 @@ public class VendedorService {
 	
 	public Vendedor inserir(Vendedor vendedor) {
 		return vendedorRepository.save(vendedor);
+	}
+	
+	/*
+	 * O método consultaPersonalizada é responsável por receber duas Strings que representam
+	 * uma data inicial e uma data final e retornar, através do acesso à classe VendedorRepository,
+	 * pelo método vendedoresQuery, uma lista do tipo Object que representa os vendedores, a quantidade
+	 * total de vendas e a média diária com base nos parâmetros determinados.
+	 * 
+	 * @param String data1 String que representa a data inicial a ser buscada na consulta
+	 * @param String data2 String que representa a data final a ser buscada na consulta
+	 * @return List<Object> object Lista do tipo Object que corresponde aos dados retornados
+	 * pela consulta.
+	 */
+	
+	public List<Object> consultaPersonalizada(String data1, String data2) {
+		return vendedorRepository.vendedoresQuery(data1, data2);
 	}
 }

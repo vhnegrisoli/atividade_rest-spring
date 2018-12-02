@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atividade_teste_xbrain.boot.domain.Vendedor;
 import com.atividade_teste_xbrain.boot.service.VendedorService;
 
 @RestController
-@RequestMapping(value = "/api_vendedores")
+@RequestMapping(value = "/api_vendedor")
 public class VendedorResource {
 
 	@Autowired
@@ -35,8 +35,7 @@ public class VendedorResource {
 	/*
 	 * O método buscaTodos é responsável por buscar todos os objetos Vendedor no
 	 * banco de dados através da instanciação de VendedorService e retornar uma
-	 * lista de objetos de Vendedores em formato JSON para a URL
-	 * /api_vendedor/vendedores.
+	 * lista de objetos de Vendedores em formato JSON
 	 * 
 	 * @return List Vendedor Lista de objetos do tipo Vendedor a ser retornada com
 	 * todos os objetos Vendedor que estiverem no banco de dados.
@@ -48,31 +47,51 @@ public class VendedorResource {
 	}
 
 	/*
-	 * O método buscaUm é responsável por receber um parâmetro identificador do tipo inteiro e buscar
-	 * na classe VendedorService através do método findById() da JPA por um objeto específico e retornar
-	 * para o controlador REST.
+	 * O método buscaUm é responsável por receber um parâmetro identificador do tipo
+	 * inteiro e buscar na classe VendedorService através do método findById() da
+	 * JPA por um objeto específico e retornar para o controlador REST.
 	 * 
-	 * @param Integer id	Inteiro que representa o identificador a ser buscado
-	 * @return Vendedor vendedor	Objeto do tipo Vendedor referenciado pelo id passado por parâmetro
+	 * @param Integer id Inteiro que representa o identificador a ser buscado
+	 * 
+	 * @return Vendedor vendedor Objeto do tipo Vendedor referenciado pelo id
+	 * passado por parâmetro
 	 */
 	@RequestMapping(value = "/vendedores/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> buscaUm(@PathVariable Integer id) {
 		Optional<Vendedor> vendedor = vendedorService.buscarUm(id);
 		return ResponseEntity.ok().body(vendedor);
 	}
-	
+
 	/*
-	 * O método criaVendedor é responsável por receber, via POST, uma requisição
-	 * em formato JSON para criar um objeto Vendedor e inserir no banco de dados 
+	 * O método criaVendedor é responsável por receber, via POST, uma requisição em
+	 * formato JSON para criar um objeto Vendedor e inserir no banco de dados
 	 * através da instância de VendedorService pelo método save.
 	 * 
-	 * @param Vendedor vendedor Objeto do tipo Vendedor recebido por uma requisição POST para
-	 * inserir no banco de dados
-	 * @return Vendedor vendedor Objeto do tipo vendedor a ser inserido no banco de dados
+	 * @param Vendedor vendedor Objeto do tipo Vendedor recebido por uma requisição
+	 * POST para inserir no banco de dados
+	 * 
+	 * @return Vendedor vendedor Objeto do tipo vendedor a ser inserido no banco de
+	 * dados
 	 */
 	@PostMapping("/vendedor")
 	public Vendedor criaVendedor(@RequestBody Vendedor vendedor) {
 		return vendedorService.inserir(vendedor);
+	}
+
+	/*
+	 * O método consultaItens é responsável por receber todos os vendedores, a quantidade total
+	 * de vendas e a média diária de vendas em um período específico, representado pelos dois
+	 * parâmetros data1 e data2.
+	 * 
+	 * @param String data1 String que representa a data inicial a ser buscada na consulta
+	 * @param String data2 String que representa a data final a ser buscada na consulta
+	 * @return List<Object> object Lista do tipo Object que corresponde aos dados retornados
+	 * pela consulta.
+	 */
+	
+	@GetMapping("/consulta")
+	public List<Object> consultaItens(String data1, String data2) {
+		return vendedorService.consultaPersonalizada(data1, data2);
 	}
 
 }
