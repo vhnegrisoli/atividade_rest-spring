@@ -7,6 +7,7 @@ package com.atividade_teste_xbrain.boot.domain;
  * 
  * @author Victor Hugo Negrisoli
  * @version 1.0
+ * 
  */
 
 import javax.persistence.ColumnResult;
